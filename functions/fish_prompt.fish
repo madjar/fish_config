@@ -77,5 +77,9 @@ function fish_prompt --description 'Write out the prompt'
                 set nix_shell_indicator "(nix-shell)"
         end
 
-	echo -n -s "$nix_shell_indicator" "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ' "$__fish_prompt_cwd" (prompt_pwd) (__fish_git_prompt) "$__fish_prompt_normal" "$prompt_status" "$delim" ' '
+        if test -n "$NIX_MYENV_NAME"
+                set nix_env_indicator "$NIX_MYENV_NAME:"
+        end
+
+	echo -n -s "$nix_env_indicator" "$nix_shell_indicator" "$__fish_prompt_user" "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ' "$__fish_prompt_cwd" (prompt_pwd) (__fish_git_prompt) "$__fish_prompt_normal" "$prompt_status" "$delim" ' '
 end
